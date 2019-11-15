@@ -31,8 +31,10 @@ namespace Projekti
                 // cmd.ExecuteNonQuery();
             }
 
-            Console.WriteLine("-------------------- RESEPTIARKISTO --------------------");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("-------------- RESEPTIARKISTO --------------");
             Console.WriteLine();
+            Console.ResetColor();
 
             int vastaus; // muuttuja vatsuksesta, jotta saadaan se if-lausekkeeseen
             List<Resepti> reseptiLista = new List<Resepti>(); // tehdään resepteistä lista
@@ -40,13 +42,19 @@ namespace Projekti
             do // toistorakenne, jotta saadaan syötettyä useampia reseptejä tai näytettyä reseptit
             {
 
+
+
                 Console.WriteLine();
                 Console.WriteLine("1 - Syötä resepti"); // valitaan tehtävä toiminto
-                Console.WriteLine("2 - Näytä reseptit");
+                Console.WriteLine("2 - Näytä kaikki reseptit");
+                Console.WriteLine("3 - Näytä kasvisreseptit");
+                Console.WriteLine("4 - Näytä lihareseptit");
                 Console.WriteLine("0 - Lopeta");
 
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Syötä numero: ");
+                Console.ResetColor();
                 vastaus = int.Parse(Console.ReadLine()); //parsitaan vastaus, jotta voidaan käyttää sitä if-rakenteessa
 
                 if (vastaus == 1) // jos käyttäjä syöttää 1, syötetään reseptin tiedot
@@ -124,29 +132,35 @@ namespace Projekti
                     Console.WriteLine($"Uusi resepti { uusiResepti.GetOtsikko() } luotu.");
                     Console.WriteLine();
 
-                } else if (vastaus == 2)
+                }
+                else if (vastaus == 2)
 
                 {
 
 
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine();
-                    Console.WriteLine("-----------------RESEPTIT-------------------");
+                    Console.WriteLine("----------------- RESEPTIT -----------------");
                     Console.WriteLine();
+                    Console.ResetColor();
+
                     // Console.WriteLine(item.GetOtsikko());
                     // Console.WriteLine();
-                    
+
 
                     using (var conn = new NpgsqlConnection(connString))
                     {
                         conn.Open(); // avataan yhteys
-                                     // määritellään SQL query
-                                     using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\"", conn)) using (var reader = cmd.ExecuteReader())
-                                     while (reader.Read())
-                                     Console.WriteLine(reader.GetString(1));
-                                     Console.WriteLine();
+                        // määritellään SQL haku
+                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\"", conn)) using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                        Console.WriteLine(reader.GetString(1));
+                        Console.WriteLine();
                     }
 
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("--------------------------------------------");
+                    Console.ResetColor();
 
 
 
@@ -154,7 +168,69 @@ namespace Projekti
 
                 }
 
-                   
+                else if (vastaus == 3)
+
+                {
+
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine();
+                    Console.WriteLine("-------------- KASVISRESEPTIT --------------");
+                    Console.WriteLine();
+                    Console.ResetColor();
+
+                    // Console.WriteLine(item.GetOtsikko());
+                    // Console.WriteLine();
+
+
+                    using (var conn = new NpgsqlConnection(connString))
+                    {
+                        conn.Open(); // avataan yhteys
+                        // määritellään SQL haku
+                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" WHERE kasvisruoka=true", conn)) using (var reader = cmd.ExecuteReader())
+                            while (reader.Read())
+                                Console.WriteLine(reader.GetString(1));
+                        Console.WriteLine();
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("--------------------------------------------");
+                    Console.ResetColor();
+
+                }
+
+                else if (vastaus == 4)
+
+                {
+
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine("--------------- LIHARESEPTIT ---------------");
+                    Console.WriteLine();
+                    Console.ResetColor();
+
+                    // Console.WriteLine(item.GetOtsikko());
+                    // Console.WriteLine();
+
+
+                    using (var conn = new NpgsqlConnection(connString))
+                    {
+                        conn.Open(); // avataan yhteys
+                        // määritellään SQL haku
+                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" WHERE kasvisruoka=false", conn)) using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                        Console.WriteLine(reader.GetString(1));
+                        Console.WriteLine();
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("--------------------------------------------");
+                    Console.ResetColor();
+
+                }
+
+
             } while (vastaus > 0); // koko ohjelma toistetaan aina, jos vastaus on 1 tai 2 tai suurempi, ja lopetetaan jos vastaus on 0
 
             // ohjelma kysyy uudestaan, syötetäänkö resepti vai näytetäänkö kaikki reseptit vai lopetetaanko ohjelma
