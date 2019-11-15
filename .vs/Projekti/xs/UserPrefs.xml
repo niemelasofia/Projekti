@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{EBC9AFEF-7A96-4E31-BB9B-A786EE612E0B}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Projekti/Program.cs">
+    <Files>
+      <File FileName="Projekti/Program.cs" Line="38" Column="91" />
+      <File FileName="Projekti/Resepti.cs" />
+      <File FileName="Projekti/Ainesosat.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Projekti" expanded="True">
+            <Node name="Projekti" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Projekti PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
