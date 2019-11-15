@@ -127,18 +127,30 @@ namespace Projekti
                 } else if (vastaus == 2)
 
                 {
-                    foreach (var item in reseptiLista)
-                    {
 
-                        Console.WriteLine("-----------------RESEPTIT-------------------");
-                        Console.WriteLine();
-                        Console.WriteLine(item.GetOtsikko());
-                        Console.WriteLine();
-                        Console.WriteLine("--------------------------------------------");
-                        
+
+                    Console.WriteLine();
+                    Console.WriteLine("-----------------RESEPTIT-------------------");
+                    Console.WriteLine();
+                    // Console.WriteLine(item.GetOtsikko());
+                    // Console.WriteLine();
+                    
+
+                    using (var conn = new NpgsqlConnection(connString))
+                    {
+                        conn.Open(); // avataan yhteys
+                                     // määritellään SQL query
+                                     using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\"", conn)) using (var reader = cmd.ExecuteReader())
+                                     while (reader.Read())
+                                     Console.WriteLine(reader.GetString(1));
+                                     Console.WriteLine();
                     }
 
-           
+                    Console.WriteLine("--------------------------------------------");
+
+
+
+
 
                 }
 
