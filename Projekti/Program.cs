@@ -100,7 +100,7 @@ namespace Projekti
                         Console.WriteLine();
                         Console.WriteLine("1 - Lisää uusi ainesosa");
                         Console.WriteLine("2 - Siirry syöttämään valmistusohjeet");
-
+                        Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Syötä numero: ");
                         Console.ResetColor();
@@ -124,8 +124,17 @@ namespace Projekti
                             ainesosaLista.Add(uusiAinesosa);
 
                         }
+                        else if (vastaus2 > 2)
 
-                    } while (vastaus2 == 1); // ohjelma toistetaan aina, jos vastaus on 1, eli käyttäjä haluaa syöttää vielä uuden ainesosan
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Virheellinen arvo, syötä uudestaan");
+                            Console.ResetColor();
+                        }
+
+
+                    } while (vastaus2 == 1 || vastaus2 > 2); // ohjelma toistetaan aina, jos vastaus on 1, eli käyttäjä haluaa syöttää vielä uuden ainesosan
 
                     Console.WriteLine();
                     Console.Write("Syötä reseptin valmistusohjeet: ");
@@ -202,12 +211,9 @@ namespace Projekti
                     {
                         conn.Open(); // avataan yhteys
                         // määritellään SQL haku
-                        // using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" WHERE kasvisruoka=true", conn)) using (var reader = cmd.ExecuteReader())
-                        // while (reader.Read())
-                        // Console.WriteLine(reader.GetString(1));
-                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" ", conn)) using (var reader = cmd.ExecuteReader())
+                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" WHERE kasvisruoka=true", conn)) using (var reader = cmd.ExecuteReader())
                         while (reader.Read())
-                        Console.WriteLine(cmd);
+                        Console.WriteLine(reader.GetString(1));
                         Console.WriteLine();
                     }
 
@@ -246,6 +252,14 @@ namespace Projekti
                     Console.WriteLine("--------------------------------------------");
                     Console.ResetColor();
 
+                }
+                else
+
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Virheellinen arvo, syötä uudestaan");
+                    Console.ResetColor();
                 }
 
 
