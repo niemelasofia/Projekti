@@ -134,7 +134,8 @@ namespace Projekti
                         }
 
 
-                    } while (vastaus2 == 1 || vastaus2 > 2); // ohjelma toistetaan aina, jos vastaus on 1, eli käyttäjä haluaa syöttää vielä uuden ainesosan
+                    } while (vastaus2 == 1 || vastaus2 > 2); // ohjelma toistetaan aina, jos vastaus on 1,
+                    // eli käyttäjä haluaa syöttää vielä uuden ainesosan tai käyttäjä syöttää virheellisen numeron 
 
                     Console.WriteLine();
                     Console.Write("Syötä reseptin valmistusohjeet: ");
