@@ -7,6 +7,7 @@ namespace Projekti
 {
     class Program
     {
+
         static void Main(string[] args)
         {
 
@@ -63,6 +64,23 @@ namespace Projekti
                     // Console.Write("Syötä reseptin id: ");
                     // int id = int.Parse(Console.ReadLine());
 
+                    // kun halutaan hakea tietokannasta tietoa:
+                    using (var conn = new NpgsqlConnection(connString))
+                    {
+                        conn.Open(); // Here we open connection
+                                     // Here we define our SQL query
+                                     // using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\"", conn)) using (var reader = cmd.ExecuteReader())
+                                     // Let's loop through all fetched rows
+                                     // while (reader.Read()) 
+                                     // Let's get the string value in the field 1 Console.WriteLine;(reader.GetString(1));
+                                     // Console.WriteLine(reader.GetString(1));
+                                     // Console.WriteLine();
+                                     // Insert some data
+                                     // using (var cmd = new NpgsqlCommand("INSERT INTO \"reseptit\" (otsikko) VALUES ('Kaalilaatikko')", conn))
+
+                        // cmd.ExecuteNonQuery();
+                    }
+
                     Console.WriteLine();
                     Console.Write("Syötä reseptin otsikko: ");
                     string otsikko = Console.ReadLine();
@@ -83,8 +101,9 @@ namespace Projekti
                         Console.WriteLine("1 - Lisää uusi ainesosa");
                         Console.WriteLine("2 - Siirry syöttämään valmistusohjeet");
 
-                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Syötä numero: ");
+                        Console.ResetColor();
                         vastaus2 = int.Parse(Console.ReadLine()); //valitaan syötetäänkö uusi ainesosa vai siirrytäänkö syöttämään valmistusohjeet
 
                         if (vastaus2 == 1)
@@ -162,10 +181,6 @@ namespace Projekti
                     Console.WriteLine("--------------------------------------------");
                     Console.ResetColor();
 
-
-
-
-
                 }
 
                 else if (vastaus == 3)
@@ -187,9 +202,12 @@ namespace Projekti
                     {
                         conn.Open(); // avataan yhteys
                         // määritellään SQL haku
-                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" WHERE kasvisruoka=true", conn)) using (var reader = cmd.ExecuteReader())
-                            while (reader.Read())
-                                Console.WriteLine(reader.GetString(1));
+                        // using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" WHERE kasvisruoka=true", conn)) using (var reader = cmd.ExecuteReader())
+                        // while (reader.Read())
+                        // Console.WriteLine(reader.GetString(1));
+                        using (var cmd = new NpgsqlCommand("SELECT * FROM \"reseptit\" ", conn)) using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                        Console.WriteLine(cmd);
                         Console.WriteLine();
                     }
 
