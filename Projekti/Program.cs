@@ -37,7 +37,7 @@ namespace Projekti
             Console.WriteLine();
             Console.ResetColor();
 
-            int vastaus; // muuttuja vatsuksesta, jotta saadaan se if-lausekkeeseen
+            int vastaus; // muuttuja vastauksesta, jotta saadaan se if-lausekkeeseen
             List<Resepti> reseptiLista = new List<Resepti>(); // tehdään resepteistä lista
 
             do // toistorakenne, jotta saadaan syötettyä useampia reseptejä tai näytettyä reseptit
@@ -134,6 +134,8 @@ namespace Projekti
                         }
 
 
+
+
                     } while (vastaus2 == 1 || vastaus2 > 2); // ohjelma toistetaan aina, jos vastaus on 1,
                     // eli käyttäjä haluaa syöttää vielä uuden ainesosan tai käyttäjä syöttää virheellisen numeron 
 
@@ -204,8 +206,7 @@ namespace Projekti
                     Console.WriteLine();
                     Console.ResetColor();
 
-                    // Console.WriteLine(item.GetOtsikko());
-                    // Console.WriteLine();
+                  
 
 
                     using (var conn = new NpgsqlConnection(connString))
@@ -235,9 +236,7 @@ namespace Projekti
                     Console.WriteLine();
                     Console.ResetColor();
 
-                    // Console.WriteLine(item.GetOtsikko());
-                    // Console.WriteLine();
-
+            
 
                     using (var conn = new NpgsqlConnection(connString))
                     {
